@@ -10,7 +10,7 @@ defmodule TupleExamplesTest do
     assert TupleExamples.displayTuple({:a, 1}) == "a => 1"
   end
 
-  test "displays a list of tuples to string" do
+  test "converts a list of tuples to a list of strings" do
     tuple_list = [{"A", 1},{"P", 2},{"L", 1},{"E", 1}]
     assert TupleExamples.displayListOfTuple(tuple_list) == ["1A", "2P", "1L", "1E"]
   end
