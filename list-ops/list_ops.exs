@@ -7,8 +7,10 @@ defmodule ListOps do
   end
 
   @spec reverse(list) :: list
-  def reverse(l) do
-    reduce(l, [], fn x, acc -> append([x], acc) end)
+  def reverse(l), do: reverse(l, [])
+  def reverse([], result), do: result
+  def reverse([h|t], result) do
+    reverse(t, [h|result])
   end
 
   @spec map(list, (any -> any)) :: list
