@@ -1,5 +1,6 @@
 defmodule ListOps do
 
+
   @spec count(list) :: non_neg_integer
   def count(l) do
     reduce(l, 0, fn _, acc -> acc + 1 end)
@@ -36,7 +37,10 @@ defmodule ListOps do
 
   @spec append(list, list) :: list
   def append(a, b) do
-    reduce(reverse(a), b, fn x, acc -> [x | acc] end)
+    case a do
+      [] -> b
+      [h|t] -> [h|append(t, b)]
+    end
   end
 
   @spec concat([[any]]) :: [any]
