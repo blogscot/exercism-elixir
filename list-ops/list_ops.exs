@@ -8,21 +8,21 @@ defmodule ListOps do
 
   @spec reverse(list) :: list
   def reverse(l) do
-    reduce(l, [], fn x, acc -> [x] ++ acc end)
+    reduce(l, [], fn x, acc -> append([x], acc) end)
   end
 
   @spec map(list, (any -> any)) :: list
   def map(l, f) do
     case l do
       [] -> []
-      [h|t] -> [f.(h)] ++ map(t, f)
+      [h|t] -> append([f.(h)], map(t, f))
     end
   end
 
   @spec filter(list, (any -> as_boolean(term))) :: list
   def filter(l, f) do
     reduce(l, [], fn x, acc ->
-      if f.(x) do [x] ++ acc else acc end
+      if f.(x) do append([x], acc) else acc end
     end) |> reverse
   end
 
