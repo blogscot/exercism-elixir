@@ -10,16 +10,13 @@ defmodule Sublist do
   def compare([_], []), do: :superlist
 
   def compare(a, b) do
-    case a == b do
-      true -> :equal
-      _ -> case a in Enum.chunk(b, length(a), 1) do
-            true -> :sublist
-            false -> case b in Enum.chunk(a, length(b), 1) do
-                  true -> :superlist
-                  false -> :unequal
-                 end
-           end
+    cond do
+      a === b -> :equal
+      contains?(a,b) -> :sublist
+      contains?(b,a) -> :superlist
+      true -> :unequal
     end
   end
-end
 
+  defp contains?(a,b), do: a in Enum.chunk(b, length(a), 1)
+end
