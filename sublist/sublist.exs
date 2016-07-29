@@ -14,15 +14,12 @@ defmodule Sublist do
       true -> :equal
       _ -> case a in Enum.chunk(b, length(a), 1) do
             true -> :sublist
-            false -> :unequal
+            false -> case b in Enum.chunk(a, length(b), 1) do
+                  true -> :superlist
+                  false -> :unequal
+                 end
            end
     end
-    # a in Enum.chunk(b, length(a), 1)
   end
 end
-
-
-r = Sublist.compare([1,1,2], [1,1,1,2])
-IO.inspect(r)
-
 
