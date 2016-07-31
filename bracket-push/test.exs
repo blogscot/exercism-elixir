@@ -18,7 +18,7 @@ defmodule Brackets do
 
 
   def is_balanced?([], []), do: true
-  def is_balanced?([], [_]), do: false
+  def is_balanced?([], x), do: false
   def is_balanced?(input=[h|t], stack) do
       IO.inspect("is_balanced? -> #{input} : #{stack}")
       if is_empty?(input),   do: is_empty?(stack),
@@ -31,7 +31,7 @@ defmodule Brackets do
 
 end
 
-input = String.codepoints("{hello[]([a()])b}c")
+input = String.codepoints("[[[")
 r = Brackets.is_balanced?(input,[])
 # r = Brackets.is_matching?("(", "}")
 IO.inspect(r)
