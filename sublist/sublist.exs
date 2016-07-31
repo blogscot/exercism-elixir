@@ -4,8 +4,7 @@ defmodule Sublist do
   and if not whether it is equal or unequal to the second list.
   """
 
-  def compare([], []), do: :equal
-  def compare([x], [x]), do: :superlist
+  def compare([a], [b]) when a === b, do: :equal
   def compare([], [_]), do: :sublist
   def compare([_], []), do: :superlist
 
