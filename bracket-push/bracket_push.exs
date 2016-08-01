@@ -9,7 +9,7 @@ defmodule BracketPush do
   def check_brackets(str), do: is_balanced?(String.codepoints(str),[])
 
   defp is_balanced?([], []), do: true
-  defp is_balanced?([], x), do: false
+  defp is_balanced?([], _), do: false
   defp is_balanced?(input=[h|t], stack) do
       if is_empty?(input),   do: is_empty?(stack),
       else: if is_open?(h),  do: is_balanced?(t, stack ++ [h]),
