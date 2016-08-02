@@ -4,8 +4,7 @@ defmodule Phone do
   @spec number(String.t) :: String.t
   def number(raw) do
     cleaned = Regex.scan(~r/[a-z\d]+/, raw)
-      |> List.flatten
-      |> Enum.reduce("", &(&2 <> &1))
+      |> Enum.join
 
     case String.length(cleaned) do
       10 -> cleaned
@@ -21,13 +20,13 @@ defmodule Phone do
   def area_code(raw) do
     raw
     |> number
-    |> String.slice(0,3)
+    |> String.slice(0..2)
   end
 
   @spec pretty(String.t) :: String.t
   def pretty(raw) do
     num = number(raw)
-    "(" <> String.slice(num,0,3) <> ") " <> String.slice(num,3,3) <> "-" <> String.slice(num,6,4)
+    "(#{String.slice(num,0..2)}) #{String.slice(num,3..5)}-#{String.slice(num,6..9)}"
   end
 
 end
