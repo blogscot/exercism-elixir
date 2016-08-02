@@ -10,16 +10,9 @@ Go to the store and buy some more, 99 bottles of beer on the wall.
 """
   end
 
-  def verse(number) when number === 2 do
-    """
-1 bottle of beer on the wall, 1 bottle of beer.
-Take it down and pass it around, no more bottles of beer on the wall.
-"""
-  end
-
   def verse(number) do
     """
-#{number-1} bottles of beer on the wall, #{number-1} bottles of beer.
+#{pluralise(number-1)} of beer on the wall, #{pluralise(number-1)} of beer.
 Take #{what?(number)} down and pass it around, #{pluralise(number-2)} of beer on the wall.
 """
   end
@@ -38,6 +31,7 @@ Take #{what?(number)} down and pass it around, #{pluralise(number-2)} of beer on
     cond do
       number > 1 -> "#{number} #{item}s"
       number === 1 -> "#{number} #{item}"
+      number === 0 -> "no more #{item}s"
       true -> :error
     end
   end
@@ -47,7 +41,6 @@ Take #{what?(number)} down and pass it around, #{pluralise(number-2)} of beer on
       number === 2 -> "it"
       true -> "one"
     end
-
   end
 
 end
