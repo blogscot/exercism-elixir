@@ -18,6 +18,7 @@ defmodule Prime do
   end
 
   def is_prime?(x) when x == 2 or x == 3, do: true
+  def is_prime?(x) when rem(x, 2) == 0, do: false
   def is_prime?(n) do
     upper_limit = :math.sqrt(n) |> trunc
     is_prime?(n, 2, upper_limit)
