@@ -8,6 +8,6 @@ defmodule SumOfMultiples do
         y <- factors,
         rem(x, y) == 0 do
           x
-        end |> Enum.uniq |> Enum.sum
+    end |> Enum.uniq |> Enum.sum
   end
 end
