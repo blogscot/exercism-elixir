@@ -35,8 +35,7 @@ defmodule Garden do
     names
     |> Enum.sort
     |> Enum.with_index
-    |> Enum.map(fn {name, index} -> {name, index*2..index*2+1} end)
-    |> Enum.into(%{})
+    |> Enum.into(%{}, fn {name, index} -> {name, index*2..index*2+1} end)
   end
 
 end
