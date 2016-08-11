@@ -13,8 +13,8 @@ defmodule Grains do
   @spec total :: pos_integer
   def total do
     for s <- 1..64 do
-      square(s)
+      s |> square
     end
-    |> Enum.reduce(0, fn x, acc -> acc + x end)
+    |> Enum.sum
   end
 end
