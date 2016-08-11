@@ -15,11 +15,11 @@ defmodule Garden do
 
   @spec info(String.t(), list) :: map
   def info(info_string, student_names \\ @names) do
-    children = students(student_names)
     [row1, row2] = String.split(info_string, "\n")
 
-    children
-    |> Enum.map(fn {name, range} ->
+    student_names
+    |> process_students
+    |> Enum.into(%{}, fn {name, range} ->
        {name,
         String.slice(row1, range) <> String.slice(row2, range)
         |> String.codepoints
@@ -27,11 +27,10 @@ defmodule Garden do
         |> List.to_tuple
         }
     end)
-    |> Enum.into(%{})
   end
 
-  @spec students(String.t()) :: map
-  def students(names \\ @names) do
+  @spec process_students(String.t()) :: map
+  def process_students(names \\ @names) do
     names
     |> Enum.sort
     |> Enum.with_index
