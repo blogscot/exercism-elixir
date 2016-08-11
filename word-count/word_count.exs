@@ -6,6 +6,6 @@ defmodule Words do
     sentence
     |> String.downcase
     |> String.split(junk, trim: true)
-    |> Enum.reduce(Map.new, fn word, dict -> Dict.update(dict, word, 1, &(&1+1)) end)
+    |> Enum.reduce(Map.new, fn word, dict -> Map.update(dict, word, 1, &(&1+1)) end)
   end
 end
