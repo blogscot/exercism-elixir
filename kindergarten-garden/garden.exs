@@ -7,9 +7,6 @@ defmodule Garden do
     It decodes that string into the various gardens for each student and returns
     that information in a map.
   """
-  defmodule Student do
-    defstruct alice: nil, bob: nil
-  end
 
   @names [:alice, :bob, :charlie, :david, :eve, :fred, :ginny, :harriet,
            :ileana, :joseph, :kincaid, :larry]
@@ -43,6 +40,3 @@ defmodule Garden do
   end
 
 end
-
-# r=Garden.info("VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV")
-# IO.inspect(r)
