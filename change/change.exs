@@ -26,12 +26,9 @@ defmodule Change do
   defp collect_coins(0, _, coins), do: {:ok, coins}
   defp collect_coins(amount, [largest|rest]=values, coins) do
     new_amount = amount - largest
-    case new_amount >= largest do
-      true -> collect_coins(new_amount, values, %{coins|largest => coins[largest]+1})
-      _ -> case new_amount >= 0 do
-        true -> collect_coins(new_amount, rest, %{coins|largest => coins[largest]+1})
-        false -> collect_coins(amount, rest, coins)
-      end
+    case new_amount >= 0 do
+      true -> collect_coins(new_amount, values, Map.update(coins, largest, 0, &(&1+1)))
+      false -> collect_coins(amount, rest, coins)
     end
   end
 
