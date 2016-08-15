@@ -2,8 +2,10 @@ defmodule KeywordExamples do
   @doc """
   Converts a keyword to string
   """
-  def displayKeyword([a, b]) do
-    "#{a} => #{b}"
+  def displayKeyword(keyword) do
+    key = Keyword.keys(keyword) |> List.first
+    value = Keyword.values(keyword) |> List.first
+    "[#{key}: #{value}]"
   end
 
   @doc """
