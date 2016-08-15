@@ -6,7 +6,13 @@ defmodule KeywordExamplesTest do
   use ExUnit.Case
 
   test "converts a keyword to string" do
-    assert KeywordExamples.displayKeyword([A: 1]) == "[A: 1]"
+    assert KeywordExamples.displayKeyword([A: 2]) == "[A: 2]"
+  end
+
+  test "raises FunctionClauseError when converting a keyword list (length > 1) to string" do
+    assert_raise FunctionClauseError , fn ->
+      KeywordExamples.displayKeyword([A: 2, B: 1])
+    end
   end
 
   test "converts a list of keywords to a list of strings" do
