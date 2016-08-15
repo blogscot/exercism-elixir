@@ -4,14 +4,13 @@ defmodule Isogram do
   """
   @spec isogram?(String.t) :: boolean
   def isogram?(sentence) do
-    sentence
-    |> clean
-    |> String.graphemes
-    |> MapSet.new
-    |> MapSet.size
-    |> Kernel.===(sentence |> clean |> String.length)
-  end
+    text = Regex.replace(~r/[\s-]+/, sentence, "")
 
-  defp clean(string), do: Regex.replace(~r/[\s-]+/, string, "")
+    text
+    |> String.graphemes
+    |> Enum.uniq
+    |> Enum.join
+    |> Kernel.===(text)
+  end
 
 end
