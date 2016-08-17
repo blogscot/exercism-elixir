@@ -1,22 +1,21 @@
 defmodule Luhn do
+  require Integer
+
   @doc """
   Calculates the total checksum of a number
   """
   @spec checksum(String.t()) :: integer
   def checksum(number) do
       number
-      |> Integer.parse
-      |> (fn {value, _} -> Integer.digits value end).()
+      |> String.to_integer
+      |> Integer.digits
       |> Enum.reverse
-      |> Enum.with_index(1)
+      |> Enum.with_index
       |> Enum.map(fn {num, index} ->
-          cond do
-            rem(index, 2) != 0 -> num
-            true ->
-              cond do
-                num * 2 >= 10 -> num * 2 - 9
-                true -> num * 2
-              end
+          case Integer.is_even(index) do
+            true -> num
+            false ->
+              if num * 2 >= 10, do: num * 2 - 9, else: num * 2
           end
       end)
       |> Enum.sum
@@ -38,7 +37,7 @@ defmodule Luhn do
   """
   @spec create(String.t()) :: String.t()
   def create(number) do
-    (number <> "0")
+    number <> "0"
     |> checksum
     |> rem(10)
     |> (fn digit ->
